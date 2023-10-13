@@ -1,3 +1,6 @@
+# use analog-to-digital converter (ADC) to read analog input on pin G1,
+# convert the value to 8 bits (0 - 255 range) and print it
+
 import os, sys, io
 import M5
 from M5 import *
