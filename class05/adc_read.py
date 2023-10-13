@@ -22,7 +22,7 @@ def loop():
   # read 12-bit analog value (0 - 4095 range):
   adc_val = adc.read()
   #print(adc_val)
-  # convert adc_val from 0-4095 range to 
+  # convert adc_val from 12-bit to 8-bit (0 - 255 range):
   adc_val_8bit = map_value(adc_val, in_min = 0, in_max = 4095,
                            out_min = 0, out_max = 255)
   print(adc_val_8bit)
