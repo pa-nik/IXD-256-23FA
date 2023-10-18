@@ -24,6 +24,7 @@ Code examples and templates for IXD-256: Advanced Interactive Prototyping.
   
 ### Class 04   
 
+[Fade RGB LED](class04/rgb_fade.py) - using loops and variables to fade RGB LEDs    
 [RGB LED with 2 States](class04/rgb_input_2states.py) - using digital input and state logic to toggle RGB LED output behavior between 2 states  
 [RGB LED with 4 States](class04/rgb_input_4states.py) - change RGB LED output behavior between 4 states with digital input and time conditions  
   
