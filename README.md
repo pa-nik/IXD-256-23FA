@@ -1,6 +1,7 @@
 ## IXD-256-23FA 
 
-Code examples and templates for IXD-256: Advanced Interactive Prototyping.  
+Code examples and templates for IXD-256: Advanced Interactive Prototyping.  View this repository on GitHub Pages:  
+[https://pa-nik.github.io/IXD-256-23FA/](https://pa-nik.github.io/IXD-256-23FA/)  
 
 ### Resources / Links  
 
