@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <!-- error script -->
+    <script>
+      window.onerror = function(msg, url, linenumber) {
+        alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+        return true;
+      }
+    </script>
+    <script>
+        function setup() {}
+    </script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <py-config type="json">
+      {
+        "fetch": [{
+          "files": ["./main.py"]
+        }]
+      }
+    </py-config>
+    <py-script>
+      from pyodide.ffi import create_proxy
+      from main import *
+
+      p5.setup = create_proxy(setup)
+      p5.draw = create_proxy(draw)
+      setup()
+    </py-script>
+
+
+    <div class="contain">
+        <div id="data" style="position: absolute; left: 10px; top: 40px;">
+            3</div>
+        
+      
+        <div style="position: absolute; z-index: 1; left: 10px; top: 10px;">
+          <button id="connect-button" type="button">🔌 Connect</button>
+          <!--<input type="range" min="0" max="1024" value="100" id="slider">-->
+        </div>
+      
+        <script>
+          const connectButton = document.getElementById ('connect-button');
+          
+          let reader;
+          let readableStreamClosed;
+          let writer;
+          let writableStreamClosed;
+      
+          async function getReader() {
+              port = await navigator.serial.requestPort({});
+              await port.open({ baudRate: 115200 });
+              console.log(port);
+              console.log(port.getInfo());
+              connectButton.innerText = '🔌 Disconnect';
+              const textDecoder = new TextDecoderStream();
+              readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+              reader = textDecoder.readable
+                  .pipeThrough(new TransformStream(new LineBreakTransformer()))
+                  .getReader();
+      
+              while (true) {
+                  const { value, done } = await reader.read();
+                  if (done) {
+                      reader.releaseLock();
+                      break;
+                  }
+                  if (value) {
+                      console.log('received.. ' + value);
+                      const textElement = document.getElementById("data");
+                      textElement.textContent = value;
+                      /*
+                      if(value.includes(':')) {
+                          const kv = value.split(':');
+                          if(kv[0] == 'text') {
+                              const textElement = document.getElementById("text");
+                              textElement.textContent = kv[1]
+                          }
+                      }
+                      */
+                  }
+              }
+          } 
+          
+          class LineBreakTransformer {
+              constructor() {
+                  // A container for holding stream data g stream data until a new line.
+                  this.chunks = "";
+              }
+      
+              transform(chunk, controller) {
+                  // Append new chunks to existing chunks.
+                  this.chunks += chunk;
+                  // For each line breaks in chunks, send the parsed lines out.
+                  const lines = this.chunks.split("\r\n");
+                  this.chunks = lines.pop();
+                  lines.forEach(line => controller.enqueue(line));
+                  console.debug(
+                  `[LineBreakTransformer/transform] this.chunks: ${this.chunks}`
+                  );
+              }
+      
+              flush(controller) {
+                  console.log("flush", this.chunks);
+                  // When the stream is closed, flush any remaining chunks out.
+                  controller.enqueue(this.chunks);
+              }
+          }
+          
+          let port;
+          if ('serial' in navigator) {
+              connectButton.addEventListener('click', async function () {
+                  if (port) {
+                      
+                      try {
+                          reader.cancel().catch(error => console.log(error));
+                          await readableStreamClosed.catch(() => {});
+                      } catch (error) {
+                          console.log(error);
+                      } finally {
+                          await port.close();
+                          console.log('close port..');
+                          port = undefined;
+                          connectButton.innerText = '🔌 Connect';
+                      }
+                  }
+                  else {
+                      getReader();
+                  }
+              });
+          }
+      </script>
+  </body>
+</html>

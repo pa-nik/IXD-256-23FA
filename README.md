@@ -38,3 +38,4 @@ Code examples and templates for IXD-256: Advanced Interactive Prototyping.
 
 [Better Serial Plotter (v0.1.0 Mac OS)](https://github.com/nathandunk/BetterSerialPlotter/releases/download/v0.1.0/BetterSerialPlotter-v0.1.0-Apple.zip)   
 [Better Serial Plotter (v0.1.2 Windows)](https://github.com/nathandunk/BetterSerialPlotter/releases/download/v0.1.2/BetterSerialPlotter-v0.1.2-Windows.zip) 
+[WebSerial Example](class06/webserial_pyscript_p5/) - Serial communication with PyScript and P5 graphics library  
