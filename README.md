@@ -29,4 +29,12 @@ Code examples and templates for IXD-256: Advanced Interactive Prototyping.
 [RGB LED with 2 States](class04/rgb_input_2states.py) - using digital input and state logic to toggle RGB LED output behavior between 2 states  
 [RGB LED with 4 States](class04/rgb_input_4states.py) - change RGB LED output behavior between 4 states with digital input and time conditions  
   
+### Class 05  
 
+[ADC Read](class05/adc_read.py) - print the value from the Analog-to-Digital Converter (ADC)  
+[ADC to RGB](class05/adc_to_rgb.py) - convert the value from ADC to RGB LED color   
+
+### Class 06  
+
+[Better Serial Plotter (v0.1.0 Mac OS)](https://github.com/nathandunk/BetterSerialPlotter/releases/download/v0.1.0/BetterSerialPlotter-v0.1.0-Apple.zip)   
+[Better Serial Plotter (v0.1.2 Windows)](https://github.com/nathandunk/BetterSerialPlotter/releases/download/v0.1.2/BetterSerialPlotter-v0.1.2-Windows.zip) 
