@@ -6,7 +6,11 @@ data_list = None
 sensor_val = None
 button_val = None
 
+# load image data and assign it to variable:
 swirl_img = p5.loadImage('swirl.png')
+
+# load font data and assign it to variable:
+jellee_font = p5.loadFont('Jellee.otf')
 
 def setup():
   p5.createCanvas(300, 300)
@@ -38,7 +42,9 @@ def draw():
   
   # draw circle changing size with sensor data:
   # ellipse function takes (x, y, width, height)
-  p5.ellipse(75, 75, sensor_val, sensor_val)
+  # map function takes (value, in_min, in_max, out_min, out_max)
+  circle_size = p5.map(sensor_val, 0, 255, 25, 100)
+  p5.ellipse(75, 75, circle_size, circle_size)
   
   # draw square changing color with sensor data:
   # fill function can take (red, green, blue)
@@ -46,16 +52,29 @@ def draw():
   # rectangle function takes (x, y, width, height)
   p5.rect(225, 75, 100, 100)
 
+  # draw text:
+  p5.fill(255)  # white fill
+  # use font installed on computer:
+  p5.textFont('Courier')
+  p5.textSize(18)
+  p5.text(sensor_val, 190, 65)
+  # use font from loaded font file:
+  p5.textFont(jellee_font)
+  p5.textSize(24)
+  p5.text(button_val, 190, 100)
+
   # draw lines responding to button data:
-  if(button_val == 0):
-    for i in range(8):
+  for i in range(8):
+    if(button_val == 0):
       p5.strokeWeight(i+1)
-      p5.stroke(0)
-      # line function takes (x1, y1, x2, y2)
-      x1 = x2 = 25 + i*12
-      y1 = 175
-      y2 = 275
-      p5.line(x1, y1, x2, y2)
+    else:
+      p5.strokeWeight(8-i)
+    p5.stroke(0)
+    # line function takes (x1, y1, x2, y2)
+    x1 = x2 = 25 + i * 14
+    y1 = 175
+    y2 = 275
+    p5.line(x1, y1, x2, y2)
 
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
