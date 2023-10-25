@@ -4,6 +4,7 @@ from js import document
 data_string = None
 data_list = None
 sensor_val = None
+button_val = None
 
 swirl_img = p5.loadImage('swirl.png')
 
@@ -13,18 +14,23 @@ def setup():
   p5.rectMode(p5.CENTER)
   # change mode to draw images from center:
   p5.imageMode(p5.CENTER)
+  # change stroke cap to square:
+  p5.strokeCap(p5.SQUARE)
 
 def draw():
   p5.background(255)
-  global data_string, data_list, sensor_val
+  global data_string, data_list
+  global sensor_val, button_val
 
   # assign content of "data" div on index.html page to variable:
   data_string = document.getElementById("data").innerText
   # split data_string by comma, making a list:
   data_list = data_string.split(',')
 
-  # assign first item of data_list to sensor_val:
+  # assign 1st item of data_list to sensor_val:
   sensor_val = int(data_list[0])
+  # assign 2nd item of data_list to sensor_val:
+  button_val = int(data_list[1])
 
   p5.noStroke()  # disable stroke
   # fill function can take 1 argument (gray)
@@ -35,10 +41,21 @@ def draw():
   p5.ellipse(75, 75, sensor_val, sensor_val)
   
   # draw square changing color with sensor data:
-  # fill function can take (red, blue, green)
+  # fill function can take (red, green, blue)
   p5.fill(sensor_val, 0, 255 - sensor_val)  
   # rectangle function takes (x, y, width, height)
   p5.rect(225, 75, 100, 100)
+
+  # draw lines responding to button data:
+  if(button_val == 0):
+    for i in range(8):
+      p5.strokeWeight(i+1)
+      p5.stroke(0)
+      # line function takes (x1, y1, x2, y2)
+      x1 = x2 = 25 + i*12
+      y1 = 175
+      y2 = 275
+      p5.line(x1, y1, x2, y2)
 
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
@@ -48,4 +65,4 @@ def draw():
   p5.rotate(angle)  # rotate coordinates
   # image function takes (image, x, y, width, height)
   p5.image(swirl_img, 0, 0, 100, 100)
-  p5.push()  # restore transformation coordinates
+  p5.pop()  # restore transformation coordinates
