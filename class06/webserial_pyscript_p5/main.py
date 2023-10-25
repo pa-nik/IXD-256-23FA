@@ -11,8 +11,8 @@ def setup():
 def draw():
   p5.background(255)
   global data_string, data_list, sensor_val
-  
-  # assign content of "data" div on index.html page to variable: 
+
+  # assign content of "data" div on index.html page to variable:
   data_string = document.getElementById("data").innerText
   # split data_string by comma, making a list:
   data_list = data_string.split(',')
@@ -26,9 +26,6 @@ def draw():
   p5.translate(75, 75)
   p5.noStroke()  # disable stroke
   p5.fill(0)  # black fill
-  # draw ellipse with (x, y, width, height): 
+  # draw ellipse with (x, y, width, height):
   p5.ellipse(0, 0, sensor_val, sensor_val)
   p5.push()  # restore transformation coordinates
-  
-
-  

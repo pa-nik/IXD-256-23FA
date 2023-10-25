@@ -36,21 +36,21 @@
     <div class="contain">
         <div id="data" style="position: absolute; left: 10px; top: 40px;">
             100,0</div>
-        
-      
+
+
         <div style="position: absolute; z-index: 1; left: 10px; top: 10px;">
           <button id="connect-button" type="button">🔌 Connect</button>
           <!--<input type="range" min="0" max="1024" value="100" id="slider">-->
         </div>
-      
+
         <script>
           const connectButton = document.getElementById ('connect-button');
-          
+
           let reader;
           let readableStreamClosed;
           let writer;
           let writableStreamClosed;
-      
+
           async function getReader() {
               port = await navigator.serial.requestPort({});
               await port.open({ baudRate: 115200 });
@@ -62,7 +62,7 @@
               reader = textDecoder.readable
                   .pipeThrough(new TransformStream(new LineBreakTransformer()))
                   .getReader();
-      
+
               while (true) {
                   const { value, done } = await reader.read();
                   if (done) {
@@ -84,14 +84,14 @@
                       */
                   }
               }
-          } 
-          
+          }
+
           class LineBreakTransformer {
               constructor() {
                   // A container for holding stream data g stream data until a new line.
                   this.chunks = "";
               }
-      
+
               transform(chunk, controller) {
                   // Append new chunks to existing chunks.
                   this.chunks += chunk;
@@ -103,19 +103,19 @@
                   `[LineBreakTransformer/transform] this.chunks: ${this.chunks}`
                   );
               }
-      
+
               flush(controller) {
                   console.log("flush", this.chunks);
                   // When the stream is closed, flush any remaining chunks out.
                   controller.enqueue(this.chunks);
               }
           }
-          
+
           let port;
           if ('serial' in navigator) {
               connectButton.addEventListener('click', async function () {
                   if (port) {
-                      
+
                       try {
                           reader.cancel().catch(error => console.log(error));
                           await readableStreamClosed.catch(() => {});
