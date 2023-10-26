@@ -1,5 +1,6 @@
-# use analog-to-digital converter (ADC) to read analog input on pin G1,
-# convert the value to 8 bits (0 - 255 range) and print it
+# print 2 values separated by comma every 100ms:
+# 1. analog input on pin G1 coverted to 8 bits (0 - 255 range) 
+# 2. digital input on pin G41 (built-in button on AtomS3 Lite)
 
 import os, sys, io
 import M5
