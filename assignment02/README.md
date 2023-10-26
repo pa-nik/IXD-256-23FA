@@ -11,4 +11,5 @@ Useful reference examples of Python + P5 code can be found in:
 
 Preview the code above running online with th following link:  
 [https://pa-nik.github.io/IXD-256-23FA/class06/webserial_pyscript_p5/](https://pa-nik.github.io/IXD-256-23FA/class06/webserial_pyscript_p5/)  
+
 ![./webserial_pyscript_p5_preview.png](./webserial_pyscript_p5_preview.png)  
