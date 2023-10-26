@@ -6,8 +6,9 @@
 
 3. Preview the changes you make by running Live Preview in VS Code and then open a browser (Chrome recommended) with the same URL.  In the browser, click the **Connect** button to see `sensor_val` and `button_val` variables updated with data from the Atom board.  
 
-Useful reference examples of Python + P5 code can be found in [class06/webserial_pyscript_p5/main.py](../class06/webserial_pyscript_p5/main.py)
+Useful reference examples of Python + P5 code can be found in:  
+[class06/webserial_pyscript_p5/main.py](../class06/webserial_pyscript_p5/main.py)
 
-Preview the code above running online with th following link: 
+Preview the code above running online with th following link:  
 ![./webserial_pyscript_p5_preview.png](./webserial_pyscript_p5_preview.png)  
 [https://pa-nik.github.io/IXD-256-23FA/class06/webserial_pyscript_p5/](https://pa-nik.github.io/IXD-256-23FA/class06/webserial_pyscript_p5/)
