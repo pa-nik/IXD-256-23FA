@@ -88,12 +88,20 @@ def draw():
   elif(button_val == 0):
     button_state = 'UP'
 
+  # fill function can take (r, g, b, alpha):
+  p5.fill(0, 255, 0, 150)  # transparent green
+  p5.noStroke()
+  p5.rect(200, 200, 50, 50)
+
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
   p5.translate(225, 225)  # move coordinates by (x, y)
   # use sensor_val as degrees converted to radians:
   angle = p5.radians(sensor_val)  
   p5.rotate(angle)  # rotate coordinates
+  # tint function can change transparency of image
+  # fint function takes (r, g, b, alpha)
+  p5.tint(255, 255, 255, 150)
   # image function takes (image, x, y, width, height)
   p5.image(swirl_img, 0, 0, 100, 100)
   p5.pop()  # restore transformation coordinates
