@@ -5,7 +5,7 @@ data_string = None
 data_list = None
 sensor_val = None
 button_val = None
-button_state = 0
+button_state = 'UP'
 
 # load image data and assign it to variable:
 swirl_img = p5.loadImage('swirl.png')
@@ -82,11 +82,11 @@ def draw():
     p5.line(x1, y1, x2, y2)
 
   # play sound when button is pressed:
-  if(button_val == 1) and (button_state == 0):
+  if(button_val == 1) and (button_state == 'UP'):
     sound.play()
-    button_state = 1
+    button_state = 'DOWN'
   elif(button_val == 0):
-    button_state = 0
+    button_state = 'UP'
 
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
