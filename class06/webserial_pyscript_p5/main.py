@@ -90,8 +90,14 @@ def draw():
 
   # fill function can take (r, g, b, alpha):
   p5.fill(0, 255, 0, 150)  # transparent green
+  # change color mode to HSB with transparency:
+  p5.colorMode(p5.HSB, 255, 255, 255, 255) 
+  # fill function can take (h, s, b, alpha):
+  p5.fill(255, 255, 255, 150)  # transparent red
   p5.noStroke()
   p5.rect(200, 200, 50, 50)
+  # change mode back to RGB:
+  p5.colorMode(p5.RGB)
 
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
