@@ -5,12 +5,16 @@ data_string = None
 data_list = None
 sensor_val = None
 button_val = None
+button_state = 0
 
 # load image data and assign it to variable:
 swirl_img = p5.loadImage('swirl.png')
 
 # load font data and assign it to variable:
 jellee_font = p5.loadFont('Jellee.otf')
+
+# load sound data and assign it to variable:
+sound = p5.loadSound('shoot.wav') 
 
 def setup():
   p5.createCanvas(300, 300)
@@ -25,6 +29,7 @@ def draw():
   p5.background(255)
   global data_string, data_list
   global sensor_val, button_val
+  global button_state
 
   # assign content of "data" div on index.html page to variable:
   data_string = document.getElementById("data").innerText
@@ -65,9 +70,9 @@ def draw():
 
   # draw lines responding to button data:
   for i in range(8):
-    if(button_val == 0):
+    if(button_val == 0): 
       p5.strokeWeight(i+1)
-    else:
+    else: 
       p5.strokeWeight(8-i)
     p5.stroke(0)
     # line function takes (x1, y1, x2, y2)
@@ -75,6 +80,13 @@ def draw():
     y1 = 175
     y2 = 275
     p5.line(x1, y1, x2, y2)
+
+  # play sound when button is pressed:
+  if(button_val == 1) and (button_state == 0):
+    sound.play()
+    button_state = 1
+  elif(button_val == 0):
+    button_state = 0
 
   # draw image rotating with sensor data:
   p5.push()  # save transformation coordinates
