@@ -23,9 +23,9 @@ def map_value(in_val, in_min, in_max, out_min, out_max):
 while(True):
     # read 12-bit analog value (0 - 4095 range):
     adc_val = adc.read()
-    # convert adc_val from 12-bit to 8-bit (0 - 255 range):
+    # convert adc_val to 90 - 150 range:
     servo_val = map_value(adc_val, in_min = 0, in_max = 4095,
-                           out_min = 90, out_max = 150)
+                          out_min = 90, out_max = 150)
     
     print(adc_val, end=' => ')
     print(servo_val)
