@@ -27,7 +27,7 @@ List all the separate hardware components used in your project and briefly expla
 * item 2   
 * etc.  
 
-Include a schematic diagram image (Fritzing is recommended, but hand-drawn is OK) showing all the wiring connections between the M5Stack Atom Matrix board and other components.  
+Include a schematic diagram image (hand-drawn is OK) showing all the wiring connections between the M5Stack AtomS3 board and other components.  
 
 In addition, include at least one photo showing your hardware wiring.  This can be several close-ups with the goal of showing how the wiring connections are made.  
 
